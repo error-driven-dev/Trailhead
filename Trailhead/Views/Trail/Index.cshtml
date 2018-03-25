@@ -1,0 +1,19 @@
+﻿@using Trailhead.Models
+
+@model Place
+holy momma
+
+@foreach (var item in Model.Places)
+{ foreach(var a in item["activities"])
+{
+    <h3><a target="_blank" href="@a["url"]" asp-route-id="">@item["name"]</a></h3>
+    <h5>@item["city"], @item["state"]</h5>
+    
+    <p>@item["description"]</p>
+   
+    <p>@a["length"] miles</p>
+     }
+    <hr/>
+}
+
+
