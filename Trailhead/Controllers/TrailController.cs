@@ -4,7 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Trailhead.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,7 +18,7 @@ namespace Trailhead.Controllers
       
 
         // GET: /<controller>/
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index2()
         {
             using (HttpClient client = new HttpClient())
             {
@@ -32,21 +34,29 @@ namespace Trailhead.Controllers
                 return View(data);
             }
         }
-        public async Task<IActionResult> One()
+        public async Task<IActionResult> Index(string coord)
         {
+            var badstring = coord.Split(' ');
+            var goodstring = badstring.Join("");
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://trailapi-trailapi.p.mashape.com");
-                client.DefaultRequestHeaders.Add("X-Mashape-Key", "K5jOkwvtBvmsh8TXTabBt7U9GG8Vp1PPeynjsnLhM43mHshsc7");
+                client.BaseAddress = new Uri("https://www.hikingproject.com");
                 var response =
-                    await client.GetAsync(
-                        $"/?unique_id=25214");
+                    await client.GetAsync($"/data/get-trails?{goodstring}&maxDistance=200&key=200238177-24a146be40fa02014108db565b54b2ed");
                 response.EnsureSuccessStatusCode();
                 var stringresult = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<Place>(stringresult);
+                JObject result = JObject.Parse(stringresult);
 
-                return View("Index", data);
+                return View(result);
             }
         }
+
+        public IActionResult ShowTrail(Jtrail trail)
+        {
+   
+            
+            return View(trail);
+        }
+
     }
 }

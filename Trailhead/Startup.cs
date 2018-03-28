@@ -26,7 +26,7 @@ namespace Trailhead
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes => routes.MapRoute(null, "{controller=api}/{action=index}"));
         }
     }
 }

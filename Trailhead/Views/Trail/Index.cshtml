@@ -1,19 +1,21 @@
-﻿@using Trailhead.Models
+﻿@using Newtonsoft.Json.Linq
 
-@model Place
+
+@model JObject
 holy momma
 
-@foreach (var item in Model.Places)
-{ foreach(var a in item["activities"])
+@foreach (var a in Model["trails"])
+
 {
-    <h3><a target="_blank" href="@a["url"]" asp-route-id="">@item["name"]</a></h3>
-    <h5>@item["city"], @item["state"]</h5>
+    @a
+    <h3><a asp-action="ShowTrail" asp-controller="trail" asp-route-t="@a">@a["name"]</a></h3>
+    <h5>@a["city"], @a["state"]</h5>
     
-    <p>@item["description"]</p>
+    <p>@a["summary"]</p>
    
     <p>@a["length"] miles</p>
      }
     <hr/>
-}
+
 
 

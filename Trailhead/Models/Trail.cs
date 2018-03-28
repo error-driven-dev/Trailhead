@@ -7,16 +7,17 @@ using Newtonsoft.Json.Linq;
 
 namespace Trailhead.Models
 {
-    [JsonObject]
+  
     public class Trail
     {
+        public int Id { get; set; }
         public string City { get; set; }
         public string Name { get; set; }
         
     }
 
-    public class Place
+    public class Jtrail
     {
-        public IEnumerable<JObject> Places { get; set; }
+        public IEnumerable<JObject> jtrail { get; set; }
     }
 }
