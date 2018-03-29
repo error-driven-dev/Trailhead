@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Trailhead.Models.API
+
+namespace Trailhead.Models
 {
-    public interface IApiRepository
+    public interface INationalParkRepository
     {
         IQueryable<NationalPark> NationalParks { get; }
         
@@ -11,8 +12,10 @@ namespace Trailhead.Models.API
         void AddMultipleParks(List<NationalPark> parks);
 }
 
-    public class NationalParkRepository:IApiRepository
+    public class NationalParkRepository:INationalParkRepository
     {
+        private List<NationalPark> _nationalParks;
+
         private AppDbContext _context;
         public NationalParkRepository(AppDbContext context)
         {

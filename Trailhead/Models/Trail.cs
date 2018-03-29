@@ -21,6 +21,12 @@ namespace Trailhead.Models
         public int Ascent { get; set; }
         public long Longitude { get; set; }
         public long Latitude { get; set; }
+        public string Difficulty { get; set; }
+        public string ImgSqSmall { get; set; }
+        public decimal Stars { get; set; }
+        public string ConditionStatus { get; set; }
+        public string ConditionDetails { get; set; }
+        public DateTime ConditionDate { get; set; }
     }
 
 

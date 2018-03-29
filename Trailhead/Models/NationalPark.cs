@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-namespace Trailhead.Models.API
+namespace Trailhead.Models
 {
     public class NationalPark
     {

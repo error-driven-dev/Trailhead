@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Trailhead.Models;
-using Trailhead.Models.API;
+
 
 namespace Trailhead
 {
@@ -27,7 +27,7 @@ namespace Trailhead
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(opts => opts.UseSqlServer(_configuration["ConnectionStrings:DefaultConnection"]));
-            services.AddTransient<IApiRepository, NationalParkRepository>();
+            services.AddTransient<INationalParkRepository, NationalParkRepository>();
             services.AddSingleton<ITrailRepository, TrailMemoryRepository>();
             services.AddMvc();
         }
@@ -41,7 +41,7 @@ namespace Trailhead
             }
 
             app.UseStaticFiles();
-            app.UseMvc(routes => routes.MapRoute(null, "{controller=Trail}/{action=index}"));
+            app.UseMvc(routes => routes.MapRoute(null, "{controller=Home}/{action=index}"));
         }
     }
 }

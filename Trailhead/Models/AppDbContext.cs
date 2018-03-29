@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Azure.KeyVault.Models;
 using Microsoft.EntityFrameworkCore;
-using Trailhead.Models.API;
+
 
 namespace Trailhead.Models
 {

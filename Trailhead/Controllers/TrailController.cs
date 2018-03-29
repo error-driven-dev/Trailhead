@@ -39,15 +39,14 @@ namespace Trailhead.Controllers
 //                return View(data);
 //            }
 //        }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string lon, string lat, string name)
         {
-//            var badstring = coord.Split(' ');
-//            var goodstring = badstring.Join("");
+
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://www.hikingproject.com");
                 var response =
-                    await client.GetAsync($"/data/get-trails?lat=37.8651&lon=-119.5383&maxDistance=200&key=200238177-24a146be40fa02014108db565b54b2ed");
+                    await client.GetAsync($"/data/get-trails?lat={lat}&lon={lon}&maxDistance=200&sort=distance&MaxResults=100&key=200238177-24a146be40fa02014108db565b54b2ed");
                 response.EnsureSuccessStatusCode();
                 var stringresult = await response.Content.ReadAsStringAsync();
                 JObject result = JObject.Parse(stringresult);
@@ -61,6 +60,7 @@ namespace Trailhead.Controllers
                 }
                 //save to memory repository
                 _repository.AddTrails(trails);
+                ViewBag.NationalPark = name;
                 return View(trails);
             }
         }

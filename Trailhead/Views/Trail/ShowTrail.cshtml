@@ -1,6 +1,13 @@
 ﻿@model Trail
     
-@Model.Name
+<h2>@Model.Name</h2>
 <p>@Model.Location</p>
+<p>@Model.Summary</p>
+<p>Length: @Model.Length</p>
+<p>Starting Elevation: @Model.Low</p>
+<p>Elevation Gain: @Model.Ascent</p>
+
+<img src="@Model.ImgSmallMed" />
+
 
 
