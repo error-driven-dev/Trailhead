@@ -1,19 +1,19 @@
 ﻿@using Newtonsoft.Json.Linq
 
 
-@model JObject
+@model List<Trail>
 holy momma
 
-@foreach (var a in Model["trails"])
+@foreach (var a in Model)
 
 {
-    @a
-    <h3><a asp-action="ShowTrail" asp-controller="trail" asp-route-t="@a">@a["name"]</a></h3>
-    <h5>@a["city"], @a["state"]</h5>
     
-    <p>@a["summary"]</p>
+    <h3><a asp-action="ShowTrail" asp-controller="trail" asp-route-id="@a.Id">@a.Name</a></h3>
+    <h5>@a.Location</h5>
+    
+    <p>@a.Length</p>
    
-    <p>@a["length"] miles</p>
+    <p>@a.Length miles</p>
      }
     <hr/>
 

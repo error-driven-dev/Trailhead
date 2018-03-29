@@ -1,16 +1,17 @@
 ﻿@using Microsoft.EntityFrameworkCore.Internal
 @using Trailhead.Models
-@model IList<Trailhead.Models.NationalPark>
+@using Trailhead.Models.API
+@model IList<Trailhead.Models.API.NationalPark>
 
 
 @foreach (var park in Model)
 {
-    <a asp-action="index" asp-controller="trail" asp-route-coord="@park.LatLong.Replace(':', '=').Replace(',', '&').Replace('g', ' ')">@park.fullName</a>
+    <a asp-action="index" asp-controller="trail"></a>
 
-    <p>@park.Addresses.FirstOrDefault()["city"], @park.Addresses.FirstOrDefault()["stateCode"]</p>
+    <p></p>
 
   
 
 
-    <p>@park.LatLong</p>
+    <p>@park.Lat</p>
 }
